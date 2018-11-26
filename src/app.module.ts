@@ -1,19 +1,30 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { CatsModule } from './cats/cats.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { JwksRsaModule } from './jwks-rsa/jwks-rsa.module';
+import { ObjectidScalar } from './common/scalars/objectid.scalar';
 
 @Module({
-  imports: [
-    CatsModule,
-    GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true,
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.schema.ts'),
-        outputAs: 'class',
-      },
-    }),
-  ],
+    imports: [
+        TypeOrmModule.forRoot(),
+        AuthModule,
+        UserModule,
+        JwksRsaModule,
+        CatsModule,
+        GraphQLModule.forRoot({
+            typePaths: ['./**/*.graphql'],
+            installSubscriptionHandlers: true,
+            context: ({ req }) => ({ request: req }),
+        }),
+    ],
+    providers: [
+        ObjectidScalar,
+        Logger,
+    ],
 })
-export class ApplicationModule {}
+export class ApplicationModule {
+}

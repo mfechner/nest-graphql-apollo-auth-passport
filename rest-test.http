@@ -1,0 +1,30 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+### Get JWKS
+GET http://localhost:3000/.well-known/jwks.json
+
+### Register user
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{ "username": "test@example.com", "password": "password" }
+
+
+### Login user and get access token
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{ "username": "test@example.com", "password": "password" }
+
+### Get Cats using REST endpoint
+GET http://localhost:3000/api/cats/catCats
+Authorization: Bearer
+Content-Type: application/json
+
+###
+

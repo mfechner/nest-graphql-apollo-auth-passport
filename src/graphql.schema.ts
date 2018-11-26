@@ -24,3 +24,6 @@ export abstract class IQuery {
 export abstract class ISubscription {
     abstract catCreated(): Cat | Promise<Cat>;
 }
+
+export type Date = any;
+export type ObjectID = any;
