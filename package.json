@@ -8,7 +8,8 @@
     "start:dev": "nodemon --verbose",
     "prestart:prod": "tsc",
     "start:prod": "node dist/main.js",
-    "createkeypair": "node createKeyPair.js"
+    "createkeypair": "node createKeyPair.js",
+    "lint": "tslint --project ."
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",

@@ -1,0 +1,20 @@
+stages:
+- security
+- lint
+- build
+
+security:
+  stage: security
+  script:
+  - npm audit
+
+codestyle:
+  stage: lint
+  script:
+  - npm ci
+  - npm run lint
+
+build:
+  stage: build
+  script:
+  - npm ci
