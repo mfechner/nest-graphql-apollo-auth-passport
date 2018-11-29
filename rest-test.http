@@ -14,7 +14,6 @@ Content-Type: application/json
 
 { "username": "test@example.com", "password": "password" }
 
-
 ### Login user and get access token
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
@@ -22,9 +21,21 @@ Content-Type: application/json
 { "username": "test@example.com", "password": "password" }
 
 ### Get Cats using REST endpoint
-GET http://localhost:3000/api/cats/catCats
-Authorization: Bearer
+GET http://localhost:3000/api/cats/getCats
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhlNzZkZWE4NmRmMzcwNzQzMmU3ZmI5YjRlOTBkNzYxYzJiYjYwZjNiNWEzY2RjZmUwNmY3N2MzMTdjYjg4NDYifQ.eyJpYXQiOjE1NDM0NzUxNTYsImV4cCI6MTU0MzQ3ODc1Niwic3ViIjoidGVzdEBleGFtcGxlLmNvbSJ9.iAEyH6cwv1PVMMtlxKf_Bz3uFErOrcpdNGZvLvesxdd7FHn1bewk9W9sbXOg66GBr8rqs1YdALWwiljcf8t7zw
 Content-Type: application/json
 
-###
+### Get Cats using graphql
+POST http://localhost:3000/graphql
+content-type: application/json
 
+{"operationName":null,"variables":{},"query":"{\n  getCats {\n    id\n    name\n    age\n  }\n}\n"}
+
+### Get Cats using graphql with auth
+POST http://localhost:3000/graphql
+content-type: application/json
+Authorization: Bearer
+
+{"operationName":null,"variables":{},"query":"{\n  getCats {\n    id\n    name\n    age\n  }\n}\n"}
+
+###

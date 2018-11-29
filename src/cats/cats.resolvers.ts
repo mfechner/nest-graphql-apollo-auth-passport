@@ -5,6 +5,7 @@ import { Cat } from '../graphql.schema';
 import { CatsGuard } from './cats.guard';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 const pubSub = new PubSub();
 
@@ -13,7 +14,7 @@ export class CatsResolvers {
   constructor(private readonly catsService: CatsService) {}
 
   @Query()
-  @UseGuards(CatsGuard)
+  @UseGuards(AuthGuard('jwt'))
   async getCats() {
     return await this.catsService.findAll();
   }

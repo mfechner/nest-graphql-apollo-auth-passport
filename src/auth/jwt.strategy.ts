@@ -1,4 +1,4 @@
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { ExecutionContext, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 
 import { AuthService } from './auth.service';
@@ -6,6 +6,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import * as jwksRsa from 'jwks-rsa';
 import * as jwtDecode from 'jwt-decode';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -50,4 +51,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         return user;
     }
 
+  getRequest(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context);
+    return ctx.getContext().req;
+  }
 }
