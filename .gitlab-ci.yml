@@ -11,10 +11,12 @@ security:
 codestyle:
   stage: lint
   script:
+  - export PYTHON=/usr/local/bin/python2.7
   - npm ci
   - npm run lint
 
 build:
   stage: build
   script:
+  - export PYTHON=/usr/local/bin/python2.7
   - npm ci
