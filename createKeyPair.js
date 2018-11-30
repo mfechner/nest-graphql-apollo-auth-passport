@@ -1,11 +1,11 @@
-var keypair = require('keypair');
-var fs = require('fs');
+const keypair = require("keypair");
+const fs = require("fs");
 
 const keySize = 512;
 const keyDirectory = 'keys';
 
-var pair = keypair({
-    bits: keySize
+const pair = keypair({
+  bits: keySize
 });
 console.log(pair);
 
