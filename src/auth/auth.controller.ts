@@ -9,7 +9,7 @@ export class AuthController {
 
     constructor(
         private readonly authService: AuthService,
-        private readonly userService: UserService
+        private readonly userService: UserService,
     ) {}
 
     @Post('login')

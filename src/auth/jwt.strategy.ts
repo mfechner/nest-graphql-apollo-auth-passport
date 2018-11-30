@@ -26,7 +26,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
                 });
                 this.logger.log('decode received token');
                 this.logger.log(jwt);
-                const kid = jwtDecode(jwt, { header: true})['kid'];
+                const keyKid = 'kid';
+                const kid = jwtDecode(jwt, { header: true})[keyKid];
                 client.getSigningKey(kid, (err, key) => {
                     if (err) {
                         this.logger.log('Error happened in getSigningKey, could not find the public key');
