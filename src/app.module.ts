@@ -26,7 +26,7 @@ import { JwtModule } from '@nestjs/jwt';
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
-      context: ({ req }) => ({ request: req }),
+      context: ({ req }) => ({ req }),
     }),
   ],
   providers: [

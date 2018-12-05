@@ -1,6 +1,7 @@
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
+import { GqlAuthGuard } from '../auth/graphql-auth.guard';
 import { Cat } from '../graphql.schema';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -13,7 +14,7 @@ export class CatsResolvers {
   constructor(private readonly catsService: CatsService) {}
 
   @Query()
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(GqlAuthGuard)
   async getCats() {
     return await this.catsService.findAll();
   }
